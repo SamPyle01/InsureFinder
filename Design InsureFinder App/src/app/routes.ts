@@ -15,32 +15,37 @@ import CostGuide from "./screens/CostGuide";
 import Welcome from "./screens/Welcome";
 import HealthProfile from "./screens/HealthProfile";
 
-export const router = createBrowserRouter([
+export const router = createBrowserRouter(
+  [
+    {
+      path: "/welcome",
+      Component: Welcome,
+    },
+    {
+      path: "/onboarding",
+      Component: Onboarding,
+    },
+    {
+      path: "/",
+      Component: Root,
+      children: [
+        { index: true, Component: Welcome },
+        { path: "location", Component: LocationSetup },
+        { path: "home", Component: Home },
+        { path: "plans", Component: Plans },
+        { path: "plans/:id", Component: PlanDetail },
+        { path: "compare", Component: ComparePlans },
+        { path: "learn", Component: Learn },
+        { path: "learn/plan-types", Component: PlanTypes },
+        { path: "learn/cost-guide", Component: CostGuide },
+        { path: "profile", Component: Profile },
+        { path: "health-profile", Component: HealthProfile },
+        { path: "settings", Component: Settings },
+        { path: "review/:planId", Component: WriteReview },
+      ],
+    },
+  ],
   {
-    path: "/welcome",
-    Component: Welcome,
-  },
-  {
-    path: "/onboarding",
-    Component: Onboarding,
-  },
-  {
-    path: "/",
-    Component: Root,
-    children: [
-      { index: true, Component: Welcome },
-      { path: "location", Component: LocationSetup },
-      { path: "home", Component: Home },
-      { path: "plans", Component: Plans },
-      { path: "plans/:id", Component: PlanDetail },
-      { path: "compare", Component: ComparePlans },
-      { path: "learn", Component: Learn },
-      { path: "learn/plan-types", Component: PlanTypes },
-      { path: "learn/cost-guide", Component: CostGuide },
-      { path: "profile", Component: Profile },
-      { path: "health-profile", Component: HealthProfile },
-      { path: "settings", Component: Settings },
-      { path: "review/:planId", Component: WriteReview },
-    ],
-  },
-]);
+    basename: "/InsureFinder",
+  }
+);
